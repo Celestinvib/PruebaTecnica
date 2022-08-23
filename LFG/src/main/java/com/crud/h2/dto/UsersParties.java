@@ -1,49 +1,43 @@
 package com.crud.h2.dto;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name="games")
-public class Game {
-	
+@Table(name="users_parties")
+public class UsersParties {
 	/**Attributes */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//Find the last value and increment from final id of db
 	private Long id;
 	
-	private String name;
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
-    private List<Party> party;
+	@ManyToOne
+    @JoinColumn(name="user_id")
+	private User user;
 	
-	/**Constructors */
-
-	public Game() {
+	@ManyToOne
+    @JoinColumn(name="party_id")
+	private Party party;
+	
+	public UsersParties() {
 		
 	}
 
 	/**
 	 * @param id
-	 * @param name
+	 * @param user
+	 * @param party
 	 */
-	public Game(Long id, String name) {
+	public UsersParties(Long id, User user, Party party) {
 		this.id = id;
-		this.name = name;
+		this.user = user;
+		this.party = party;
 	}
-
-	/**Getters y Setters*/
-
 
 	/**
 	 * @return the id
@@ -60,41 +54,37 @@ public class Game {
 	}
 
 	/**
-	 * @return the name
+	 * @return the user
 	 */
-	public String getName() {
-		return name;
+	public User getUser() {
+		return user;
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param user the user to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/**
 	 * @return the party
 	 */
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
-	public List<Party> getParty() {
+	public Party getParty() {
 		return party;
 	}
 
 	/**
 	 * @param party the party to set
 	 */
-	public void setParty(List<Party> party) {
+	public void setParty(Party party) {
 		this.party = party;
 	}
 	
 	//Method printing data by console
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", name=" + name+"]";
+		return "UsersParties [id=" + id + ", user=" + user+ ", party=" + party+"]";
 	}
-
-	
 	
 }
