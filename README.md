@@ -1,7 +1,7 @@
 # PruebaTecnica
 Prueba Técnica de Spring en la cual se demuestra todos los conocimientos adquiridos en desarrollo de APIs. 
 ### Detalles a tener en cuenta 
-No me ha dado tiempo a finalizar todo el ejercicio
+No me ha dado tiempo a finalizar todo el ejercicio.
 ### URIs endpoints: -> https://cka-prueba-tecnica.herokuapp.com/
 ```
 User
